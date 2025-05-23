@@ -8,6 +8,8 @@
     "jikan-mcp": "./build/index.js"
   },
   "scripts": {
+    "start": "node index.js",
+    "dev": "npx @modelcontextprotocol/inspector node ./build/index.js",
     "build": "tsc"
   },
   "files": [
