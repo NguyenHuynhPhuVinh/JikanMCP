@@ -3,9 +3,9 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
-// Tạo server instance đơn giản
+// Tạo server instance JikanMCP
 const server = new McpServer({
-  name: "hello",
+  name: "jikan-mcp",
   version: "1.0.0",
   capabilities: {
     resources: {},
@@ -13,13 +13,13 @@ const server = new McpServer({
   },
 });
 
-// Đăng ký tool đơn giản chỉ trả về "xin chào"
-server.tool("hello", "Trả về lời chào đơn giản", {}, async () => {
+// Đăng ký tool chào mừng JikanMCP
+server.tool("hello", "Trả về lời chào từ JikanMCP", {}, async () => {
   return {
     content: [
       {
         type: "text",
-        text: "Xin chào",
+        text: "Xin chào từ JikanMCP!",
       },
     ],
   };
@@ -28,7 +28,7 @@ server.tool("hello", "Trả về lời chào đơn giản", {}, async () => {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Hello MCP Server đang chạy trên stdio");
+  console.error("JikanMCP Server đang chạy trên stdio");
 }
 
 main().catch((error) => {

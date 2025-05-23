@@ -1,11 +1,11 @@
 {
-  "name": "@tomisakae/test-mcp",
-  "version": "1.0.3",
-  "description": "test-mcp",
+  "name": "@tomisakae/jikan-mcp",
+  "version": "1.0.0",
+  "description": "JikanMCP - MCP server cho Jikan API",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "test-mcp": "./build/index.js"
+    "jikan-mcp": "./build/index.js"
   },
   "scripts": {
     "build": "tsc"
@@ -15,15 +15,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NguyenHuynhPhuVinh/test-mcp.git"
+    "url": "git+https://github.com/NguyenHuynhPhuVinh/JikanMCP.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/NguyenHuynhPhuVinh/test-mcp/issues"
+    "url": "https://github.com/NguyenHuynhPhuVinh/JikanMCP/issues"
   },
-  "homepage": "https://github.com/NguyenHuynhPhuVinh/test-mcp#readme",
+  "homepage": "https://github.com/NguyenHuynhPhuVinh/JikanMCP#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.0",
     "zod": "^3.25.23"
