@@ -1,8 +1,6 @@
 /**
  * Các công cụ MCP liên quan đến tìm kiếm
  */
-import { JikanAPI } from "../api/jikan.js";
-import { ENDPOINTS } from "../api/constants.js";
 import { searchAnime } from "./anime.js";
 import { searchManga } from "./manga.js";
 import { searchCharacters } from "./characters.js";

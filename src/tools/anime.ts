@@ -153,3 +153,12 @@ export async function getAnimeRecommendations(id: number): Promise<any> {
   );
   return response;
 }
+
+/**
+ * Lấy thông tin về một anime ngẫu nhiên
+ * @returns Thông tin anime ngẫu nhiên
+ */
+export async function getRandomAnime(): Promise<Anime> {
+  const response = await jikanAPI.request<JikanResponse<Anime>>(ENDPOINTS.RANDOM_ANIME);
+  return response.data;
+}

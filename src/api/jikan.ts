@@ -93,3 +93,16 @@ export class JikanAPI {
     }
   }
 }
+
+// Tạo một instance của JikanAPI để sử dụng trong toàn bộ ứng dụng
+const jikanAPI = new JikanAPI();
+
+/**
+ * Hàm tiện ích để gọi Jikan API
+ * @param endpoint Endpoint của API
+ * @param params Các tham số query string
+ * @returns Dữ liệu trả về từ API
+ */
+export async function fetchJikanData<T>(endpoint: string, params: Record<string, any> = {}): Promise<T> {
+  return jikanAPI.request<T>(endpoint, params);
+}

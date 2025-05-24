@@ -4,7 +4,6 @@
 import { JikanAPI } from "../api/jikan.js";
 import { ENDPOINTS } from "../api/constants.js";
 import { Anime } from "../types/anime.js";
-import { JikanResponse } from "../types/common.js";
 
 // Khởi tạo Jikan API client
 const jikanAPI = new JikanAPI();

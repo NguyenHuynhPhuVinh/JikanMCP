@@ -108,3 +108,12 @@ export async function getMangaRecommendations(id: number): Promise<any> {
   );
   return response;
 }
+
+/**
+ * Lấy thông tin về một manga ngẫu nhiên
+ * @returns Thông tin manga ngẫu nhiên
+ */
+export async function getRandomManga(): Promise<Manga> {
+  const response = await jikanAPI.request<JikanResponse<Manga>>(ENDPOINTS.RANDOM_MANGA);
+  return response.data;
+}

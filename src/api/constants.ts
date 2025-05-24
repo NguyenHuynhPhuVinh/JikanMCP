@@ -71,9 +71,34 @@ export const ENDPOINTS = {
   PRODUCERS: '/producers',
   PRODUCER_BY_ID: '/producers/{id}',
 
+  // Club endpoints
+  CLUBS: '/clubs',
+  CLUB_BY_ID: '/clubs/{id}',
+  CLUB_MEMBERS: '/clubs/{id}/members',
+  CLUB_STAFF: '/clubs/{id}/staff',
+  CLUB_RELATIONS_ANIME: '/clubs/{id}/relations/anime',
+  CLUB_RELATIONS_MANGA: '/clubs/{id}/relations/manga',
+
+  // Review endpoints
+  REVIEWS: '/reviews',
+  REVIEWS_ANIME: '/reviews/anime',
+  REVIEWS_MANGA: '/reviews/manga',
+  REVIEW_ANIME_BY_ID: '/reviews/anime/{id}',
+  REVIEW_MANGA_BY_ID: '/reviews/manga/{id}',
+
+  // Watch endpoints
+  WATCH: '/watch',
+  WATCH_EPISODES: '/watch/episodes',
+  WATCH_EPISODES_POPULAR: '/watch/episodes/popular',
+  WATCH_PROMOS: '/watch/promos',
+  WATCH_PROMOS_POPULAR: '/watch/promos/popular',
+
   // Random endpoints
   RANDOM_ANIME: '/random/anime',
   RANDOM_MANGA: '/random/manga',
   RANDOM_CHARACTER: '/random/characters',
   RANDOM_PERSON: '/random/people',
 };
+
+// Export cho sử dụng trong dự án
+export const JIKAN_ENDPOINTS = ENDPOINTS;
