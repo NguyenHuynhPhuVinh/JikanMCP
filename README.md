@@ -1,122 +1,147 @@
-# JikanMCP
+# JikanMCP 🌟
 
-## Giới thiệu
+JikanMCP là một máy chủ Model Context Protocol (MCP) mạnh mẽ được thiết kế để kết nối với Jikan API - một API không chính thức phổ biến của MyAnimeList. Với JikanMCP, bạn có thể dễ dàng truy cập và tương tác với kho dữ liệu khổng lồ về anime, manga, nhân vật, tác giả, câu lạc bộ, nhà sản xuất, và nhiều hơn nữa, tất cả đều thông qua giao thức MCP tiện lợi.
 
-JikanMCP là một Model Context Protocol (MCP) server cho Jikan API - API không chính thức của MyAnimeList. Server này cung cấp các công cụ để tương tác với dữ liệu anime, manga, nhân vật, người, club, nhà sản xuất và nhiều thông tin liên quan khác thông qua giao thức MCP.
+## Model Context Protocol (MCP) là gì? 🤔
 
-### Cấu hình với Model Context Protocol (MCP)
+Model Context Protocol (MCP) là một tiêu chuẩn mở đột phá, cho phép các hệ thống Trí Tuệ Nhân Tạo (AI) kết nối một cách liền mạch với các nguồn dữ liệu và công cụ bên ngoài. Hãy tưởng tượng MCP như một "thông dịch viên" đa năng, giúp các ứng dụng AI (client) và các máy chủ cung cấp dữ liệu (server) "nói chuyện" với nhau một cách dễ dàng, thay thế cho vô số các tích hợp riêng lẻ và phức tạp.
 
-#### Giới thiệu về MCP
+**Kiến trúc MCP bao gồm ba thành phần chính:**
 
-Model Context Protocol (MCP) là một tiêu chuẩn mở cho phép kết nối các hệ thống AI với các nguồn dữ liệu và công cụ bên ngoài (như kho lưu trữ, công cụ kinh doanh, môi trường phát triển). MCP thay thế các tích hợp phân mảnh bằng một giao thức duy nhất, giúp các ứng dụng AI (client) và các server dễ dàng tương tác với nhau.
+- **Client**: Các ứng dụng AI hoặc agent thông minh (ví dụ: Claude, Cursor, Windsurf) muốn "học hỏi" hoặc sử dụng dữ liệu từ thế giới bên ngoài.
+- **Server**: Các "cầu nối" hoặc "trung gian" như JikanMCP, cung cấp một cách thức chuẩn hóa để client truy cập vào các hệ thống bên ngoài.
+- **Host**: "Người quản lý" điều phối các client, thực thi các chính sách bảo mật và đảm bảo mọi thứ hoạt động trơn tru.
 
-Kiến trúc MCP bao gồm:
+**Tại sao MCP lại tuyệt vời?** ✨
 
-- **Client**: Các ứng dụng AI hoặc agent muốn truy cập hệ thống bên ngoài (ví dụ: Claude, Cursor, Windsurf)
-- **Server**: Các wrapper hoặc trung gian cung cấp cách tiêu chuẩn để truy cập các hệ thống bên ngoài (ví dụ: JikanMCP)
-- **Host**: Quản lý và điều phối các client, thực thi chính sách bảo mật
+- **Tích hợp linh hoạt**: Client có thể "bắt tay" với nhiều server khác nhau mà không cần phải hiểu rõ chi tiết kỹ thuật của từng hệ thống.
+- **Tái sử dụng tối đa**: Các nhà phát triển server chỉ cần xây dựng tích hợp một lần, và nó có thể được sử dụng bởi vô số client khác nhau.
+- **Phân tách rõ ràng**: Các nhóm phát triển có thể tập trung vào chuyên môn của mình – xây dựng client AI hoặc tích hợp server – một cách độc lập và hiệu quả.
 
-#### Cấu hình JikanMCP cho các ứng dụng
+## Bắt đầu với JikanMCP 🚀
 
-##### 1. Cấu hình cho Claude Desktop
+### Yêu cầu
 
-1. Mở Claude Desktop và vào Settings
-2. Chọn mục Developer và bật Developer Mode
-3. Tìm file cấu hình tại:
-   - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
-   - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-4. Thêm cấu hình JikanMCP vào file:
+- Node.js (phiên bản khuyến nghị: 18.x trở lên)
+- npm (thường đi kèm với Node.js)
 
-```json
-{
-  "mcpServers": {
-    "JikanMCP": {
-      "command": "npx",
-      "args": ["-y", "@tomisakae/jikan-mcp"]
-    }
-  }
-}
+### Cài đặt
+
+Bạn có thể dễ dàng cài đặt JikanMCP thông qua npm:
+
+```bash
+npm install @tomisakae/jikan-mcp
 ```
 
-5. Lưu file và khởi động lại Claude Desktop
-6. Kiểm tra biểu tượng công cụ ở góc dưới bên phải để xác nhận MCP đã hoạt động
+Hoặc nếu bạn muốn sử dụng trực tiếp với `npx` mà không cần cài đặt toàn cục:
 
-#### Lợi ích của MCP
+```bash
+npx @tomisakae/jikan-mcp
+```
 
-- **Tích hợp linh hoạt**: Các client có thể kết nối với nhiều server khác nhau mà không cần biết chi tiết về từng hệ thống
-- **Tái sử dụng**: Các nhà phát triển server có thể xây dựng tích hợp một lần và có thể truy cập đến nhiều ứng dụng client khác nhau
-- **Phân tách trách nhiệm**: Các đội khác nhau có thể tập trung vào việc xây dựng ứng dụng client hoặc tích hợp server một cách độc lập
+### Cấu hình JikanMCP cho Ứng dụng Client (Ví dụ: Claude Desktop)
 
-## Tính năng
+Để "dạy" cho ứng dụng AI của bạn cách sử dụng JikanMCP, bạn cần cấu hình nó trong ứng dụng client.
 
-JikanMCP cung cấp các công cụ sau:
+**Đối với Claude Desktop:**
 
-### Anime
+1.  Mở ứng dụng Claude Desktop và điều hướng đến **Settings**.
+2.  Chọn mục **Developer** và kích hoạt **Developer Mode**.
+3.  Tìm tệp cấu hình của Claude Desktop:
+    - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+    - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+4.  Thêm đoạn cấu hình sau vào tệp `claude_desktop_config.json`:
 
-- Lấy thông tin anime
-- Tìm kiếm anime
-- Lấy nhân vật, tập, tin tức, video, thống kê, đề xuất
-- Lấy anime ngẫu nhiên
+    ```json
+    {
+      "mcpServers": {
+        "JikanMCP": {
+          "command": "npx",
+          "args": ["-y", "@tomisakae/jikan-mcp"]
+        }
+      }
+    }
+    ```
 
-### Manga
+    _(Lưu ý: Nếu tệp đã có sẵn mục `mcpServers`, hãy thêm `JikanMCP` vào danh sách đó.)_
 
-- Lấy thông tin manga
-- Tìm kiếm manga
-- Lấy nhân vật, tin tức, thống kê, đề xuất
-- Lấy manga ngẫu nhiên
+5.  Lưu tệp cấu hình và **khởi động lại** Claude Desktop.
+6.  Sau khi khởi động lại, hãy kiểm tra biểu tượng công cụ (thường ở góc dưới bên phải) để đảm bảo JikanMCP đã được kết nối và sẵn sàng hoạt động! 🎉
 
-### Nhân vật
+## Các Tính Năng Chính 🛠️
 
-- Lấy thông tin nhân vật
-- Tìm kiếm nhân vật
-- Lấy danh sách anime, manga, hình ảnh
+JikanMCP cung cấp một loạt các công cụ mạnh mẽ để bạn khám phá thế giới anime và manga:
 
-### Người
+### ანიმე (Anime)
 
-- Lấy thông tin người
-- Tìm kiếm người
-- Lấy danh sách anime, manga, hình ảnh
+- Lấy thông tin chi tiết về một anime.
+- Tìm kiếm anime theo từ khóa và nhiều tiêu chí khác.
+- Truy xuất danh sách nhân vật, đội ngũ sản xuất, các tập phim, tin tức, video, hình ảnh, thống kê, và các anime được đề xuất.
+- Khám phá một anime ngẫu nhiên!
 
-### Mùa
+### マンガ (Manga)
 
-- Lấy thông tin mùa hiện tại
-- Lấy thông tin mùa sắp tới
+- Lấy thông tin chi tiết về một manga.
+- Tìm kiếm manga theo từ khóa và nhiều tiêu chí khác.
+- Truy xuất danh sách nhân vật, tin tức, hình ảnh, thống kê, và các manga được đề xuất.
+- Khám phá một manga ngẫu nhiên!
 
-### Lịch phát sóng
+### キャラクター (Nhân Vật)
 
-- Lấy lịch phát sóng anime
+- Lấy thông tin chi tiết về một nhân vật.
+- Tìm kiếm nhân vật.
+- Xem danh sách anime, manga, và hình ảnh liên quan đến nhân vật.
 
-### Thể loại
+### 人 (Người - Tác giả, Diễn viên lồng tiếng,...)
 
-- Lấy danh sách thể loại anime và manga
+- Lấy thông tin chi tiết về một người.
+- Tìm kiếm người.
+- Xem danh sách anime, manga, và hình ảnh liên quan đến người đó.
 
-### Tìm kiếm
+### シーズン (Mùa Anime)
 
-- Tìm kiếm tổng hợp (anime, manga, nhân vật, người)
+- Lấy thông tin về các anime trong mùa hiện tại.
+- Xem trước các anime sắp ra mắt trong mùa tới.
 
-### Xếp hạng
+### スケジュール (Lịch Phát Sóng)
 
-- Lấy danh sách top anime, manga, nhân vật, người
+- Theo dõi lịch phát sóng hàng tuần của các bộ anime.
 
-### Club
+### ジャンル (Thể Loại)
 
-- Lấy thông tin club
-- Lấy danh sách thành viên, staff, anime và manga liên quan
+- Khám phá danh sách các thể loại anime và manga.
 
-### Nhà sản xuất
+### トップ (Xếp Hạng)
 
-- Lấy thông tin nhà sản xuất
-- Lấy danh sách anime của nhà sản xuất
+- Xem danh sách top anime, manga, nhân vật, và người được yêu thích nhất.
 
-### Đánh giá
+### クラブ (Câu Lạc Bộ)
 
-- Lấy danh sách đánh giá anime và manga
+- Lấy thông tin chi tiết về một câu lạc bộ trên MyAnimeList.
+- Xem danh sách thành viên, đội ngũ quản lý, và các anime/manga liên quan đến câu lạc bộ.
 
-### Watch
+### プロデューサー (Nhà Sản Xuất)
 
-- Lấy danh sách tập mới nhất và phổ biến
-- Lấy danh sách promo mới nhất và phổ biến
+- Lấy thông tin chi tiết về một nhà sản xuất/studio.
+- Xem danh sách các anime do họ sản xuất.
 
-## Giấy phép
+### レビュー (Đánh Giá)
 
-Dự án này được phát hành dưới giấy phép MIT.
+- Đọc các bài đánh giá mới nhất về anime và manga.
+
+### ウォッチ (Xem)
+
+- Khám phá các tập anime mới được phát hành và phổ biến.
+- Xem các video quảng cáo (promo) mới nhất và nổi bật.
+
+## Đóng Góp 🤝
+
+Những đóng góp của bạn luôn được chào đón! Nếu bạn có ý tưởng cải thiện, sửa lỗi, hoặc thêm tính năng mới, đừng ngần ngại tạo một **Issue** hoặc gửi một **Pull Request** trên GitHub.
+
+## Giấy Phép 📜
+
+Dự án JikanMCP được phát hành dưới giấy phép MIT. Xem chi tiết tại tệp `LICENSE`.
+
+---
+
+Chúc Senpai có những trải nghiệm tuyệt vời với JikanMCP! Nếu có bất kỳ câu hỏi nào, đừng ngần ngại hỏi Code-tan nhé! (⁄ ⁄•⁄ω⁄•⁄ ⁄)♡
